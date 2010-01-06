@@ -3,12 +3,16 @@ package OpenGL::XScreenSaver;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 require XSLoader;
 XSLoader::load('OpenGL::XScreenSaver', $VERSION);
 
 my $window_id = 0;
+
+# for tests
+sub _window_id { return $window_id; }
+sub _reset_wid { $window_id = 0; }
 
 sub init {
 	# parse and remove XScreenSaver specific arguments.
@@ -20,7 +24,7 @@ sub init {
 			$window_id = oct($window_id) if ($window_id =~ /^0/);
 			splice(@ARGV, 0, 2);
 		} elsif ($ARGV[0] eq "-root") {
-			$window_id = 0x10f;
+			$window_id = "ROOT";
 			shift(@ARGV);
 		} elsif ($ARGV[0] eq "-mono" or $ARGV[0] eq "-install") {
 			shift(@ARGV);
@@ -43,10 +47,14 @@ sub init {
 	# own window.
 	# return the information to the caller because the user might decide she
 	# wants it to work in XScreenSaver only, not standalone.
-	return $window_id != 0;
+	return ! ! $window_id;
 }
 
 sub start {
+	xss_connect();
+	if ($window_id eq "ROOT") {
+		$window_id = xss_root_window();
+	}
 	xss_init_gl($window_id);
 }
 
