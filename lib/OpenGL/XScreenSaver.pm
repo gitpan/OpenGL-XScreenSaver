@@ -3,7 +3,7 @@ package OpenGL::XScreenSaver;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 require XSLoader;
 XSLoader::load('OpenGL::XScreenSaver', $VERSION);
@@ -63,6 +63,10 @@ sub update {
 	xss_update_viewport();
 }
 
+sub dimensions {
+	xss_viewport_dimensions();
+}
+
 1;
 
 __END__
@@ -110,6 +114,9 @@ The B<update()> function should be called when you finished rendering the
 frame. It will flush output and swap the buffers. In the future it might also
 handle a minimal set of X events when run in standalone mode (like window
 deletion requests by the window manager).
+
+The B<dimensions()> function returns a list with the width and the height of
+the currently used window.
 
 =head2 About screenhacks
 

@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               OpenGL-XScreenSaver
-version:            0.03
+version:            0.04
 abstract:           prepare environment for writing OpenGL-based XScreenSaver hacks
 author:  []
 license:            perl

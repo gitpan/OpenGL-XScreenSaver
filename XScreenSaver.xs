@@ -64,4 +64,11 @@ xss_root_window()
 	OUTPUT:
 		RETVAL
 
+void
+xss_viewport_dimensions()
+	PPCODE:
+		XWindowAttributes xwa;
+		XGetWindowAttributes(dpy, win, &xwa);
+		XPUSHs(sv_2mortal(newSVnv(xwa.width)));
+		XPUSHs(sv_2mortal(newSVnv(xwa.height)));
 
