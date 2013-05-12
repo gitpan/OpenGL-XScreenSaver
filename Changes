@@ -1,3 +1,7 @@
+OpenGL-XScreenSaver 0.05 - Mon May 13 01:35:07 2013 +0200
+
+    * update bundled Devel::CheckLib, fixes RT 85213
+
 OpenGL-XScreenSaver 0.04 - Sat Feb 20 03:30:04 2010 +0100
 
     * add dimensions() function to query window dimensions

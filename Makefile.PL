@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use ExtUtils::MakeMaker;
 
-use lib 'inc';
+use lib qw(inc);
 use Devel::CheckLib;
 
 check_lib_or_exit(lib => ['X11', 'GL']);
